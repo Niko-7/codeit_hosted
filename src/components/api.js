@@ -11,7 +11,22 @@ import axios from 'axios';
 // };
 
 export const getTopics = () => {
-  return axios.get('http://mitch-mitch.herokuapp.com/api/topics').then(({ data }) => {
-    return data.topics
-  });
+  return axios
+    .get('http://mitch-mitch.herokuapp.com/api/topics')
+    .then(({ data }) => {
+      return data.topics;
+    });
+};
+
+export const getArticles = (topic) => {
+  return axios
+    .get(`http://mitch-mitch.herokuapp.com/api/articles?limit=50`, {
+      params: {
+        topic,
+      },
+    })
+    .then(({ data }) => {
+      console.log(data);
+      return data.articles;
+    });
 };
