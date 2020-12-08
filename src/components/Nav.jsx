@@ -3,7 +3,6 @@ import { getTopics } from './api';
 import { Link } from '@reach/router';
 import { capitalise } from '../utils/capitalise';
 
-
 class Nav extends Component {
   state = {
     topics: [],
@@ -18,14 +17,13 @@ class Nav extends Component {
   render() {
     const { topics } = this.state;
     return (
-      <nav> 
-       
-        <Link to='/articles'>
-          <button className='nav_btn'>Home</button>
+      <nav className='nav_style sort_btn_nav'>
+        <Link className='sort-button' to='/articles'>
+          <button>All Articles</button>
         </Link>
         {topics.map((topic) => (
           <Link
-            className='nav_bar'
+            className='sort-button'
             key={topic.slug}
             to={`/articles/${topic.slug}`}
           >
