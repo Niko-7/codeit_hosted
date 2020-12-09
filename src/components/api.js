@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-
-
 export const getTopics = () => {
   return axios
     .get('http://mitch-mitch.herokuapp.com/api/topics')
@@ -24,59 +22,24 @@ export const getArticles = (topic, order, sort_by) => {
     });
 };
 
-// export const sortByDateAsc = (topic) => {
-//   axios
-//     .get(
-//       `http://mitch-mitch.herokuapp.com/api/articles?limit=50&sort_by=created_at&order=asc`,
-//       {
-//         params: {
-//           topic,
-//         },
-//       }
-//     )
-//     .then(({ data }) => {
-//       return data.articles;
-//     });
-// };
+export const getArticleById = (article_id) => {
+  return axios
+    .get(`http://mitch-mitch.herokuapp.com/api/articles/${article_id}`)
+    .then(({ data }) => {
+      return data.article;
+    });
+};
 
-// export const sortByDateDesc = (topic) => {
-//   axios
-//     .get(`http://mitch-mitch.herokuapp.com/api/articles?limit=50&order=desc`, {
-//       params: {
-//         topic,
-//       },
-//     })
-//     .then(({ data }) => {
-//       return data.articles;
-//     });
-// };
+export const voteArticle = (article_id, voteValue) => {
+  return axios.patch(
+    `http://mitch-mitch.herokuapp.com/api/articles/${article_id}`,
+    { inc_votes: voteValue }
+  );
+};
 
-// export const sortByVotesAsc = (topic) => {
-//   axios
-//     .get(
-//       `http://mitch-mitch.herokuapp.com/api/articles?limit=50&sort_by=votes&order=asc`,
-//       {
-//         params: {
-//           topic,
-//         },
-//       }
-//     )
-//     .then(({ data }) => {
-//       return data.articles;
-//     });
-// };
-
-// export const sortByVotesDesc = (topic) => {
-//   axios
-//     .get(
-//       `http://mitch-mitch.herokuapp.com/api/articles?limit=50sort_by=votes&order=desc`,
-//       {
-//         params: {
-//           topic,
-//         },
-//       }
-//     )
-//     .then(({ data }) => {
-//       return data.articles;
-//     });
-// };
+export const voteComment = (comment_id, voteValue) => {
+  return axios.patch(
+    `http://mitch-mitch.herokuapp.com/api/comments/${comment_id}`,
+    { inc_votes: voteValue }
+  );
+};

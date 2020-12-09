@@ -17,8 +17,9 @@ class Nav extends Component {
   render() {
     const { topics } = this.state;
     return (
+      
       <nav className='nav_style sort_btn_nav'>
-        <Link className='sort-button' to='/articles'>
+        <Link className='sort-button' to='/'>
           <button>All Articles</button>
         </Link>
         {topics.map((topic) => (

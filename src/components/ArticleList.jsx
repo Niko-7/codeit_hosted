@@ -3,13 +3,15 @@ import { getArticles } from './api';
 import { capitalise } from '../utils/capitalise';
 import Loading from './Loading';
 import Buttons from './Buttons';
+import { Link } from '@reach/router';
+import Vote from './Vote';
 
 class ArticleList extends Component {
   state = {
     articles: [],
     isLoading: true,
     order: 'asc',
-    sort_by: 'article_id',
+    sort_by: 'comment_count',
   };
 
   componentDidMount() {
@@ -36,7 +38,7 @@ class ArticleList extends Component {
   }
 
   changeOrder = (order) => {
-    this.setState({ order, isLoading: true });
+    this.setState({ order , isLoading: true });
   };
   sortByComm = (sort_by, order) => {
     this.setState({ order, sort_by, isLoading: true });
@@ -57,11 +59,14 @@ class ArticleList extends Component {
         <ul className='main_list'>
           {articles.map((article) => (
             <li className='article_list' key={article.article_id}>
-              <h2 className='article_header'>{article.title}</h2>
+              <Link to={`/article/${article.article_id}`}>
+                <h2 className='article_header'>{article.title}</h2>
+              </Link>
               <h3>{article.body}</h3>
               <p>By: {article.author} </p>
+              <p>Posted: {article.created_at}</p>
               <p>Comments: {article.comment_count}</p>{' '}
-              <p>Created At: {article.created_at}</p>
+              <Vote voteCount={article.votes} comment_id={article.article_id} />
             </li>
           ))}
         </ul>
