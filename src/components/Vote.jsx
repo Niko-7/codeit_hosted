@@ -20,7 +20,6 @@ class Vote extends React.Component {
         this.setState((currentState) => {
           return {
             voteCount: currentState.voteCount - voteValue,
-            
           };
         });
       });
@@ -31,7 +30,6 @@ class Vote extends React.Component {
         this.setState((currentState) => {
           return {
             voteCount: currentState.voteCount - voteValue,
-           
           };
         });
       });
@@ -42,7 +40,6 @@ class Vote extends React.Component {
     return (
       <div>
         <p>Votes: {this.props.voteCount + this.state.voteCount} </p>
-
         <button
           className='sort-button'
           onClick={() => this.handleVote(-1)}
@@ -54,7 +51,6 @@ class Vote extends React.Component {
           className='sort-button'
           onClick={() => this.handleVote(1)}
           value={1}
-          
         >
           Upvote
         </button>

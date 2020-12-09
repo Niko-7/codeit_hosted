@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { getArticles } from './api';
 import { capitalise } from '../utils/capitalise';
 import Loading from './Loading';
-import Buttons from './Buttons';
+import Buttons from './SortButtons';
 import { Link } from '@reach/router';
 import Vote from './Vote';
 
@@ -25,8 +25,8 @@ class ArticleList extends Component {
     const newTopic = prevProps.article_topic !== this.props.article_topic;
     const newOrder = prevState.order !== this.state.order;
     const newSort = prevState.sort_by !== this.state.sort_by;
-
-    if (newTopic || newOrder || newSort) {
+    const loadingState = prevState.isLoading !== this.state.isLoading;
+    if (newTopic || newOrder || newSort || loadingState) {
       getArticles(
         this.props.article_topic,
         this.state.order,
@@ -38,7 +38,7 @@ class ArticleList extends Component {
   }
 
   changeOrder = (order) => {
-    this.setState({ order , isLoading: true });
+    if (order !== this.state.order) this.setState({ order, isLoading: true });
   };
   sortByComm = (sort_by, order) => {
     this.setState({ order, sort_by, isLoading: true });
@@ -52,8 +52,8 @@ class ArticleList extends Component {
     const { article_topic } = this.props;
     return (
       <main>
-        <h1>Currently Displaying {articles.length} Articles</h1>
         <h2>{article_topic ? capitalise(article_topic) : 'All Articles'} </h2>
+        <h3>Currently Displaying {articles.length} Articles</h3>
 
         <Buttons changeOrder={this.changeOrder} sortByComm={this.sortByComm} />
         <ul className='main_list'>
@@ -62,7 +62,7 @@ class ArticleList extends Component {
               <Link to={`/article/${article.article_id}`}>
                 <h2 className='article_header'>{article.title}</h2>
               </Link>
-              <h3>{article.body}</h3>
+              
               <p>By: {article.author} </p>
               <p>Posted: {article.created_at}</p>
               <p>Comments: {article.comment_count}</p>{' '}

@@ -17,9 +17,11 @@ class Nav extends Component {
   render() {
     const { topics } = this.state;
     return (
-      
       <nav className='nav_style sort_btn_nav'>
         <Link className='sort-button' to='/'>
+          <button>Home</button>
+        </Link>
+        <Link className='sort-button' to='/articles'>
           <button>All Articles</button>
         </Link>
         {topics.map((topic) => (

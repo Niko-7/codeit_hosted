@@ -4,6 +4,7 @@ import ArticleList from './components/ArticleList';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import Article from './components/Article';
+import Home from './components/Home';
 
 const App = () => {
   return (
@@ -11,8 +12,9 @@ const App = () => {
       <Header />
       <Nav />
       <Router>
+        <Home path='/' />
         <ArticleList path='/articles/:article_topic' />
-        <ArticleList path='/' />
+        <ArticleList path='/articles' />
         <Article path='/article/:article_id' />
       </Router>
     </div>

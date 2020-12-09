@@ -21,6 +21,24 @@ export const getArticles = (topic, order, sort_by) => {
       return data.articles;
     });
 };
+export const getPopular = () => {
+  return axios
+    .get(
+      'http://mitch-mitch.herokuapp.com/api/articles?sort_by=comment_count&order=desc&limit=3'
+    )
+    .then(({ data }) => {
+      return data.articles;
+    });
+};
+export const getMostVoted = () => {
+  return axios
+    .get(
+      'http://mitch-mitch.herokuapp.com/api/articles?sort_by=comment_count&order=desc&limit=3'
+    )
+    .then(({ data }) => {
+      return data.articles;
+    });
+};
 
 export const getArticleById = (article_id) => {
   return axios

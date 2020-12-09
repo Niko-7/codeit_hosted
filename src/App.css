@@ -7,13 +7,10 @@ body {
 
 .header_all {
   display: inline;
-  
 }
 .header_text {
-  
   color: rgb(236, 84, 40);
 }
-
 
 @keyframes animated-border {
   0% {
@@ -26,28 +23,45 @@ body {
 
 .article_list {
   list-style: none;
-  margin-left: 35%;
-  margin-right: 35%;
   animation: animated-border 1.5s infinite;
   font-family: Arial;
-  font-size: 18px;
-  line-height: 30px;
-  font-weight: bold;
   color: white;
   border: 2px solid;
   border-radius: 10px;
   padding: 15px;
+  text-emphasis: bold;
+  margin: 1% 35% 1% 35%;
+}
+.home_list {
+  list-style: none;
+  animation: animated-border 1.5s infinite;
+  font-family: Arial;
+  color: white;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 15px;
+  text-emphasis: bold;
+  margin: 1% 35% 1% 35%;
+}
+.home_extras_list {
+  margin: 1% 35% 1% 35%;
+  list-style: none;
+  animation: animated-border 1.5s infinite;
+  font-family: Arial;
+  color: white;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 15px;
+  text-emphasis: bold;
 }
 .comment_list {
   animation: animated-border 1.5s infinite;
   font-family: Arial;
-  font-size: 18px;
-  line-height: 30px;
-  font-weight: bold;
   color: white;
   border: 2px solid;
   border-radius: 10px;
   padding: 15px;
+  margin: 5% 0 5% 0;
 }
 
 .article_header {
@@ -55,7 +69,7 @@ body {
 }
 
 button {
-  font-size: larger;
+  font-size: medium;
   color: rgb(236, 84, 40);
   border: 5px solid rgb(236, 84, 40);
   border-radius: 10px;
@@ -74,7 +88,6 @@ button {
 }
 
 .loading {
-  
   display: flex;
   flex-direction: row;
 }
@@ -146,10 +159,13 @@ button {
     width: 320px;
     padding: 0;
     margin: 0;
+    width: 100%;
+    margin: 10px 0 10px 0;
   }
   ul.main_list {
     padding: 0;
     margin-left: 5%;
+    width: 100%;
   }
   .sort_btn_nav,
   nav.sort_btn_nav {
@@ -168,5 +184,16 @@ button {
 @media (max-width: 340px) {
   .loading__letter {
     font-size: 40px;
+  }
+  .article_list {
+    width: 320px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  ul.main_list {
+    padding: 0;
+    margin-left: 5%;
+    width: 100%;
   }
 }

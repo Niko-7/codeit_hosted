@@ -2,10 +2,11 @@ import React from 'react';
 import Loading from '../components/Loading';
 import axios from 'axios';
 import Vote from './Vote';
-import PostComment from "./PostComment"
+import PostComment from './PostComment';
 
 class Comments extends React.Component {
   state = {
+    username: 'jessjelly',
     comments: [],
     isLoading: true,
   };
@@ -23,25 +24,25 @@ class Comments extends React.Component {
       });
   }
 
-    updateComments = (newComment) => {
-      this.setState((currState) => ({
-        comments: [newComment, ...currState.comments],
-      }));
-    };
+  updateComments = (newComment) => {
+    this.setState((currState) => ({
+      comments: [newComment, ...currState.comments],
+    }));
+  };
 
-    deleteComment = (comment_id) => {
-      this.setState((prevState) => {
-        const newComments = prevState.comments.filter((comment) => {
-          return comment_id !== comment.comment_id;
-        });
-        return {
-          comments: newComments,
-        };
+  deleteComment = (comment_id) => {
+    this.setState((prevState) => {
+      const newComments = prevState.comments.filter((comment) => {
+        return comment_id !== comment.comment_id;
       });
-      axios.delete(
-        `https://mitch-mitch.herokuapp.com/api/comments/${comment_id}`
-      );
-    };
+      return {
+        comments: newComments,
+      };
+    });
+    axios.delete(
+      `https://mitch-mitch.herokuapp.com/api/comments/${comment_id}`
+    );
+  };
 
   render() {
     if (this.state.isLoading) return <Loading />;
@@ -53,24 +54,20 @@ class Comments extends React.Component {
           article_id={this.props.article_id}
           updateComments={this.updateComments}
         />
-
         {comments.map((comment) => {
           return (
-            <div className='comment_list'>
+            <div className='comment_list' key={comment.comment_id}>
               <p>
                 {comment.author} commented on: {comment.created_at}
               </p>
-
               <p>{comment.body}</p>
-              {comment.author === this.props.user && (
-                <button
-                  className='del-comment-btn'
-                  onClick={() => this.deleteComment(comment.comment_id)}
-                >
+
+              <Vote voteCount={comment.votes} comment_id={comment.comment_id} />
+              {comment.author === this.state.username ? (
+                <button onClick={() => this.deleteComment(comment.comment_id)}>
                   Delete
                 </button>
-              )}
-              <Vote voteCount={comment.votes} comment_id={comment.comment_id} />
+              ) : null}
             </div>
           );
         })}

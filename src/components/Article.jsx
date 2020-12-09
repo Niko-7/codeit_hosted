@@ -29,16 +29,16 @@ class Article extends Component {
     return (
       <div className='article_list'>
         <div>
-          <Link to='/'>
+          <Link to='/articles'>
             {' '}
             <button className='sort-button'>Back To All</button>
           </Link>
         </div>
-        <h1 className='article_header'>{article.title}</h1>
+        <h2 className='article_header'>{article.title}</h2>
         <h3>{article.body}</h3>
         <p>By: {article.author} </p>
         <p>Posted: {article.created_at}</p>
-        
+
         <Vote voteCount={article.votes} comment_id={article.article_id} />
         <div>
           <Comments

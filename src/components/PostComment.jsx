@@ -3,8 +3,8 @@ import React from 'react';
 
 class PostComment extends React.Component {
   state = {
-      body: '',
-      username : "Jessjelly",
+    body: '',
+    username: 'jessjelly',
     formSubmitted: false,
   };
 
@@ -13,11 +13,11 @@ class PostComment extends React.Component {
     const newComment = { body: this.state.body, username: this.state.username };
     axios
       .post(
-        `mitch-mitch.herokuapp.com/api/articles/${this.props.article_id}/comments`,
+        `https://mitch-mitch.herokuapp.com/api/articles/${this.props.article_id}/comments`,
         newComment
       )
-      .then((res) => {
-        this.props.updateComments(res.data.comment);
+      .then(({ data }) => {
+        this.props.updateComments(data.comment[0]);
       });
   };
 
@@ -30,25 +30,32 @@ class PostComment extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor='body'></label>
-        <textarea
-          rows='4'
-          cols='50'
-          type='text'
-          name='body'
-          id='body'
-          onChange={this.handleChange}
-          value={this.state.body}
-          placeholder='Add A Comment'
-        />
+      <>
+        <form onSubmit={this.handleSubmit}>
+          <label htmlFor='body'></label>
+          <textarea
+            rows='4'
+            cols='50'
+            type='text'
+            name='body'
+            id='body'
+            onChange={this.handleChange}
+            value={this.state.body}
+            placeholder='Add A Comment'
+            className='comment_form'
+          />
+          <button
+            type='submit'
+            onClick={() => this.setState({ formSubmitted: true })}
+          >
+            Submit Comment
+          </button>
+        </form>
 
-        <button className='comment-btn' type='submit'>
-          Submit Comment
-        </button>
-        {this.state.formSubmitted && <p>COMMENT SUBMITTED</p>}
-      </form>
+        {this.state.formSubmitted ? <p>Submitted ✔️</p> : null}
+      </>
     );
+    // }
   }
 }
 
