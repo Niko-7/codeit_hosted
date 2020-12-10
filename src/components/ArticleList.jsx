@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { getArticles } from './api';
+import { getArticles } from '../Api/api';
 import { capitalise } from '../utils/capitalise';
 import Loading from './Loading';
 import Buttons from './SortButtons';
 import { Link } from '@reach/router';
 import Vote from './Vote';
+
 
 class ArticleList extends Component {
   state = {
@@ -40,7 +41,7 @@ class ArticleList extends Component {
   changeOrder = (order) => {
     if (order !== this.state.order) this.setState({ order, isLoading: true });
   };
-  sortByComm = (sort_by, order) => {
+  sortBy = (sort_by, order) => {
     this.setState({ order, sort_by, isLoading: true });
   };
 
@@ -55,14 +56,13 @@ class ArticleList extends Component {
         <h2>{article_topic ? capitalise(article_topic) : 'All Articles'} </h2>
         <h3>Currently Displaying {articles.length} Articles</h3>
 
-        <Buttons changeOrder={this.changeOrder} sortByComm={this.sortByComm} />
+        <Buttons changeOrder={this.changeOrder} sortByComm={this.sortBy} />
         <ul className='main_list'>
           {articles.map((article) => (
             <li className='article_list' key={article.article_id}>
               <Link to={`/article/${article.article_id}`}>
                 <h2 className='article_header'>{article.title}</h2>
               </Link>
-              
               <p>By: {article.author} </p>
               <p>Posted: {article.created_at}</p>
               <p>Comments: {article.comment_count}</p>{' '}

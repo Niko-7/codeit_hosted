@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getMostVoted } from './api';
+import { getMostVoted } from '../Api/api';
 import Loading from './Loading';
 import { Link } from '@reach/router';
 
@@ -8,7 +8,6 @@ class HomeExtras extends Component {
 
   componentDidMount() {
     getMostVoted().then((articles) => {
-      console.log(articles);
       this.setState({ articles, isLoading: false });
     });
   }

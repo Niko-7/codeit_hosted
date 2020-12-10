@@ -13,13 +13,13 @@ const SortButtons = (props) => {
         className='sort-button'
         onClick={() => props.sortByComm('comment_count', 'desc')}
       >
-        Most Comments
+        Most Commented
       </button>
       <button
         className='sort-button'
-        onClick={() => props.sortByComm('comment_count', 'asc')}
+        onClick={() => props.sortByComm('votes', 'desc')}
       >
-        Least Comments
+        Most Voted
       </button>
     </div>
   );

@@ -3,6 +3,7 @@ import Loading from '../components/Loading';
 import axios from 'axios';
 import Vote from './Vote';
 import PostComment from './PostComment';
+import { getCommentByArtId } from '../Api/api';
 
 class Comments extends React.Component {
   state = {
@@ -12,16 +13,11 @@ class Comments extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get(
-        `https://mitch-mitch.herokuapp.com/api/articles/${this.props.article_id}/comments`
-      )
-      .then(({ data }) => {
-        this.setState({
-          comments: data.comments,
-          isLoading: false,
-        });
-      });
+    const { article_id } = this.props;
+    getCommentByArtId(article_id).then((comments) => {
+      console.log(comments);
+      this.setState({ comments, isLoading: false });
+    });
   }
 
   updateComments = (newComment) => {

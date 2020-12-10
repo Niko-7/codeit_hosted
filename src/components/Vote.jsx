@@ -1,5 +1,5 @@
 import React from 'react';
-import { voteArticle, voteComment } from './api';
+import { voteArticle, voteComment } from '../Api/api';
 
 class Vote extends React.Component {
   state = {
@@ -9,17 +9,19 @@ class Vote extends React.Component {
 
   handleVote = (voteValue) => {
     this.setState((currentState) => {
-      return { voteCount: currentState.voteCount + voteValue };
+      return { voteCount: currentState.voteCount + voteValue, hasVoted: true };
     });
 
     const { article_id } = this.props;
     const { comment_id } = this.props;
 
     if (article_id) {
+      console.log('about to vote');
       voteArticle(article_id, voteValue).catch(() => {
         this.setState((currentState) => {
           return {
             voteCount: currentState.voteCount - voteValue,
+            hasVoted: false,
           };
         });
       });
@@ -44,6 +46,7 @@ class Vote extends React.Component {
           className='sort-button'
           onClick={() => this.handleVote(-1)}
           value={-1}
+          disabled={this.state.hasVoted}
         >
           Downvote
         </button>
@@ -51,6 +54,7 @@ class Vote extends React.Component {
           className='sort-button'
           onClick={() => this.handleVote(1)}
           value={1}
+          disabled={this.state.hasVoted}
         >
           Upvote
         </button>

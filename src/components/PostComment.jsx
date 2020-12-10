@@ -10,7 +10,9 @@ class PostComment extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+
     const newComment = { body: this.state.body, username: this.state.username };
+
     axios
       .post(
         `https://mitch-mitch.herokuapp.com/api/articles/${this.props.article_id}/comments`,
@@ -34,6 +36,7 @@ class PostComment extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='body'></label>
           <textarea
+            maxLength='2'
             rows='4'
             cols='50'
             type='text'
@@ -55,7 +58,6 @@ class PostComment extends React.Component {
         {this.state.formSubmitted ? <p>Submitted ✔️</p> : null}
       </>
     );
-    // }
   }
 }
 

@@ -148,10 +148,7 @@ button {
     margin: 0;
     width: 90%;
   }
-  .login {
-    display: flexbox;
-    flex-wrap: wrap;
-  }
+
   .loading__letter {
     font-size: 50px;
   }
@@ -167,6 +164,20 @@ button {
     margin-left: 5%;
     width: 100%;
   }
+
+  .home_list {
+    width: 320px;
+    padding: 0;
+    margin: 10px 20px 10px 0;
+  }
+  .home_extras_list {
+    width: 320px;
+    padding: 0;
+    margin: 0;
+
+    margin: 10px 20px 10px 0;
+  }
+
   .sort_btn_nav,
   nav.sort_btn_nav {
     display: flex;

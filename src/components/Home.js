@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPopular } from './api';
+import { getPopular } from '../Api/api';
 import Loading from './Loading';
 import { Link } from '@reach/router';
 import HomeExtras from './HomeExtras';
