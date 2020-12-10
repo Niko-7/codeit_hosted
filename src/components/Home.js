@@ -20,16 +20,14 @@ class Home extends Component {
     const { articles } = this.state;
     return (
       <div>
-        <h3>Top {articles.length} Most Commented Articles</h3>
+        <h3>Most Commented Article</h3>
         <ul>
-          {articles.map((article) => (
-            <li className='home_list' key={article.article_id}>
-              <Link to={`/article/${article.article_id}`}>
-                <h2 className='article_header'>{article.title}</h2>
+            <li className='home_list' key={articles.article_id}>
+              <Link to={`/article/${articles.article_id}`}>
+                <h2 className='article_header'>{articles.title}</h2>
               </Link>
-              <p>Comments: {article.comment_count}</p>{' '}
+              <p>Comments: {articles.comment_count}</p>{' '}
             </li>
-          ))}
         </ul>
         <HomeExtras />
       </div>

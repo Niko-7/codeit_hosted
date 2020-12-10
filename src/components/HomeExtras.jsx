@@ -18,16 +18,14 @@ class HomeExtras extends Component {
     const { articles } = this.state;
     return (
       <div>
-        <h3>Top {articles.length} Most Voted Articles</h3>
+        <h3>Most Voted Articles</h3>
         <ul>
-          {articles.map((article) => (
-            <li className='home_extras_list' key={article.article_id}>
-              <Link to={`/article/${article.article_id}`}>
-                <h2 className='article_header'>{article.title}</h2>
-              </Link>
-              <p>Votes: {article.votes}</p>{' '}
-            </li>
-          ))}
+          <li className='home_extras_list' key={articles.article_id}>
+            <Link to={`/article/${articles.article_id}`}>
+              <h2 className='article_header'>{articles.title}</h2>
+            </Link>
+            <p>Votes: {articles.votes}</p>{' '}
+          </li>
         </ul>
       </div>
     );

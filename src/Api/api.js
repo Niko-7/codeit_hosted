@@ -24,19 +24,19 @@ export const getArticles = (topic, order, sort_by) => {
 export const getPopular = () => {
   return axios
     .get(
-      'https://codeit-nc.herokuapp.com/api/articles?sort_by=comment_count&order=desc&limit=3'
+      'https://codeit-nc.herokuapp.com/api/articles?sort_by=comment_count&order=desc'
     )
     .then(({ data }) => {
-      return data.articles;
+      return data.articles[0];
     });
 };
 export const getMostVoted = () => {
   return axios
     .get(
-      'https://codeit-nc.herokuapp.com/api/articles?sort_by=votes&order=desc&limit=3'
+      'https://codeit-nc.herokuapp.com/api/articles?sort_by=votes&order=desc'
     )
     .then(({ data }) => {
-      return data.articles;
+      return data.articles[0];
     });
 };
 
