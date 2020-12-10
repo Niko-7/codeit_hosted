@@ -12,12 +12,12 @@ const App = () => {
     <div>
       <Header />
       <Nav />
-      <ErrorMessages status={404} message='Page not found' />
       <Router>
         <Home path='/' />
         <ArticleList path='/articles/:article_topic' />
         <ArticleList path='/articles' />
         <Article path='/article/:article_id' />
+        <ErrorMessages default status={404} message='Page not found' />
       </Router>
     </div>
   );

@@ -9,7 +9,7 @@ class Home extends Component {
 
   componentDidMount() {
     getPopular().then((articles) => {
-      console.log(articles);
+     
       this.setState({ articles, isLoading: false });
     });
   }

@@ -20,7 +20,7 @@ class Nav extends Component {
         this.setState({ topics, isLoading: false });
       })
       .catch((err) => {
-        console.log(err)
+        
         const {
           response: { status, statusText },
         } = err;

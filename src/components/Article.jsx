@@ -23,7 +23,6 @@ class Article extends Component {
         this.setState({ article, isLoading: false });
       })
       .catch((err) => {
-        console.log(err);
         const {
           response: { status, statusText },
         } = err;

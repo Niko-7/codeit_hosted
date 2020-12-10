@@ -15,9 +15,9 @@ class Comments extends React.Component {
   componentDidMount() {
     const { article_id } = this.props;
     getCommentByArtId(article_id).then((comments) => {
-      console.log(comments);
       this.setState({ comments, isLoading: false });
     });
+   
   }
 
   updateComments = (newComment) => {
@@ -41,8 +41,12 @@ class Comments extends React.Component {
   };
 
   render() {
-    if (this.state.isLoading) return <Loading />;
-    const { comments } = this.state;
+    const { comments} = this.state;
+
+    if (this.state.isLoading) {
+      return <Loading />;
+    }
+    
     return (
       <div className='comments-list'>
         <h2>Comments: {comments.length}</h2>
