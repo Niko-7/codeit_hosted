@@ -3,10 +3,16 @@ import React from 'react';
 const SortButtons = (props) => {
   return (
     <div className='sort_btn_nav'>
-      <button className='sort-button' onClick={() => props.changeOrder('asc')}>
+      <button
+        className='sort-button'
+        onClick={() => props.changeOrder('created_at', 'asc')}
+      >
         Oldest
       </button>
-      <button className='sort-button' onClick={() => props.changeOrder('desc')}>
+      <button
+        className='sort-button'
+        onClick={() => props.changeOrder('created_at', 'desc')}
+      >
         Newest
       </button>
       <button

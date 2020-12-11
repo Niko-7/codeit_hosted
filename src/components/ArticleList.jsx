@@ -40,7 +40,6 @@ class ArticleList extends Component {
           this.setState({ articles, isLoading: false });
         })
         .catch((err) => {
-         
           const {
             response: { status, statusText },
           } = err;
@@ -54,11 +53,13 @@ class ArticleList extends Component {
     }
   }
 
-  changeOrder = (order) => {
-    if (order !== this.state.order) this.setState({ order, isLoading: true });
+  changeOrder = (sort_by, order) => {
+    if (sort_by !== this.state.order)
+      this.setState({ order, sort_by, isLoading: true });
   };
   sortBy = (sort_by, order) => {
-    this.setState({ order, sort_by, isLoading: true });
+    if (sort_by !== this.state.order)
+      this.setState({ order, sort_by, isLoading: true });
   };
 
   render() {

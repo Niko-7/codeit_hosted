@@ -36,7 +36,7 @@ class Comments extends React.Component {
       };
     });
     axios.delete(
-      `https://mitch-mitch.herokuapp.com/api/comments/${comment_id}`
+      `https://codeit-nc.herokuapp.com/api/comments/${comment_id}`
     );
   };
 

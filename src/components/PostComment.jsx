@@ -18,8 +18,8 @@ class PostComment extends React.Component {
         newComment
       )
       .then(({ data }) => {
-        console.log(data);
         this.props.updateComments(data.comment);
+        this.setState({ formSubmitted: true });
       });
   };
 
@@ -47,14 +47,8 @@ class PostComment extends React.Component {
             placeholder='Add A Comment'
             className='comment_form'
           />
-          <button
-            type='submit'
-            onClick={() => this.setState({ formSubmitted: true })}
-          >
-            Submit Comment
-          </button>
+          <button type='submit'>Submit Comment</button>
         </form>
-
         {this.state.formSubmitted ? <p>Submitted ✔️</p> : null}
       </>
     );
