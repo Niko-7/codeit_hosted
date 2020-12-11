@@ -18,7 +18,7 @@ class HomeExtras extends Component {
     const { articles } = this.state;
     return (
       <div>
-        <h3>Most Voted Articles</h3>
+        <h3>Most Voted Article</h3>
         <ul>
           <li className='home_extras_list' key={articles.article_id}>
             <Link to={`/article/${articles.article_id}`}>
